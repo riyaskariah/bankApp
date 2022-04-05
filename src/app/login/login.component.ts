@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     1001: { accno: 1001, uname: "Lysha", password: 1001, balance: 3000 },
     1002: { accno: 1002, uname: "jim", password: 1003, balance: 4000 }
   }
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -25,51 +26,57 @@ export class LoginComponent implements OnInit {
  
   accNoChange(event: any) {
     this.acc_no = event.target.value
-    //console.log(this.acc_no)
+    
   }
 
   pswdChange(event: any) {
     this.pswd = event.target.value
-    //console.log(this.pswd)
+    
   }
-// using event binding
-  // login() {
-  //  var acno = this.acc_no
-  //  var pswrd = this.pswd
-  //  let database = this.database
-  //  if(acno in database){
 
-  //    if(pswrd == database[acno]["password"]){
-  //     alert("Login successfull !!!!")
-  //    }
-  //    else{
-  //      alert("Invalid password !!!!")
-  //    }
+// using event binding / two way binding
+  login() {
+    console.log(this.acc_no)
+    console.log(this.pswd)
+    
+   var acno = this.acc_no
+   var pswrd = this.pswd
+   let database = this.database
+   if(acno in database){
 
-  //  }
-  //  else{
-  //    alert("User doesnt exist !!!!!!!!!!!")
-  //  }
-  // }
-// login using template referencing variable
-  login(a:any,p:any) {
-    var acno = a.value
-    var pswrd = p.value
-    let database = this.database
-    if(acno in database){
- 
-      if(pswrd == database[acno]["password"]){
-       alert("Login successfull !!!!")
-      }
-      else{
-        alert("Invalid password !!!!")
-      }
- 
-    }
-    else{
-      alert("User doesnt exist !!!!!!!!!!!")
-    }
+     if(pswrd == database[acno]["password"]){
+      alert("Login successfull !!!!")
+      this.router.navigateByUrl("dashboard ")
+     }
+     else{
+       alert("Invalid password !!!!")
+     }
+
    }
+   else{
+     alert("User doesnt exist !!!!!!!!!!!")
+   }
+  }
+
+// login using template referencing variable
+  // login(a:any,p:any) {
+  //   var acno = a.value
+  //   var pswrd = p.value
+  //   let database = this.database
+  //   if(acno in database){
+ 
+  //     if(pswrd == database[acno]["password"]){
+  //      alert("Login successfull !!!!")
+  //     }
+  //     else{
+  //       alert("Invalid password !!!!")
+  //     }
+ 
+  //   }
+  //   else{
+  //     alert("User doesnt exist !!!!!!!!!!!")
+  //   }
+  //  }
  
 
 }
