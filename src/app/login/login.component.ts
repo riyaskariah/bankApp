@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   acc_no = ""
   pswd = ""
 
-  database = {
+  database :any = {
     1000: { accno: 1000, uname: "Neer", password: 1000, balance: 5000 },
     1001: { accno: 1001, uname: "Lysha", password: 1001, balance: 3000 },
     1002: { accno: 1002, uname: "jim", password: 1003, balance: 4000 }
@@ -22,9 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() {
-    alert("Login button clicked")
-  }
+ 
   accNoChange(event: any) {
     this.acc_no = event.target.value
     //console.log(this.acc_no)
@@ -34,5 +32,24 @@ export class LoginComponent implements OnInit {
     this.pswd = event.target.value
     //console.log(this.pswd)
   }
-  
+
+  login() {
+   var acno = this.acc_no
+   var pswrd = this.pswd
+   let database = this.database
+   if(acno in database){
+     
+     if(pswrd == database[acno]["password"]){
+      alert("Login successfull !!!!")
+     }
+     else{
+       alert("Invalid password !!!!")
+     }
+
+   }
+   else{
+     alert("User doesnt exist !!!!!!!!!!!")
+   }
+  }
+
 }
